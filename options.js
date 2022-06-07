@@ -1,4 +1,4 @@
-const gameOptions = {
+const numsOptions = {
     reply_markup: JSON.stringify({
         inline_keyboard: [
             [{text: '1', callback_data: '1'}, {text: '2', callback_data: '2'}, {text: '3', callback_data: '3'}],
@@ -8,12 +8,40 @@ const gameOptions = {
     })
 }
 
-const againOptions = {
+const botOptions = {
     reply_markup: JSON.stringify({
         inline_keyboard: [
-            [{text: 'еще раз', callback_data: '/again'}],
+            [{text: 'Хочу получить предсказание на день', callback_data: 'getPrediction'}],
+            [{text: 'Хочу проверь свою удачу', callback_data: 'checkLuck'}],
+            [{text: 'Хочу получить ответ на интересующий вопрос', callback_data: 'askQuestion'}],
         ]
     })
 }
 
-export{ gameOptions, againOptions }
+const getAnswerOptions = {
+    reply_markup: JSON.stringify({
+        inline_keyboard: [
+            [{text: 'Получить ответ', callback_data: 'getAnswer'}],
+            [{text: 'Я боюсь, хочу вернуться обратно', callback_data: 'goToStart'}],
+        ]
+    })
+}
+
+const getLuckOptions = {
+    reply_markup: JSON.stringify({
+        inline_keyboard: [
+            [{text: 'Обратиться ко Вселенной!', callback_data: 'showNums'}],
+            [{text: 'Я боюсь, хочу вернуться обратно', callback_data: 'goToStart'}],
+        ]
+    })
+}
+
+const toStartOptions = {
+    reply_markup: JSON.stringify({
+        inline_keyboard: [
+            [{text: 'Хочу вернуться к выбору', callback_data: 'goToStart'}],
+        ]
+    })
+}
+
+export{ numsOptions, botOptions, getAnswerOptions, toStartOptions, getLuckOptions }
