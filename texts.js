@@ -1,3 +1,18 @@
+const PREDICTIONCARDSCOUNT = 18;
+
+const entryStikerList = [
+    'https://tlgrm.ru/_/stickers/df4/305/df430517-93f0-3a43-9b14-a376f18bcb0e/5.webp',
+    'https://tlgrm.ru/_/stickers/df4/305/df430517-93f0-3a43-9b14-a376f18bcb0e/8.webp',
+    'https://tlgrm.ru/_/stickers/df4/305/df430517-93f0-3a43-9b14-a376f18bcb0e/10.webp',
+    'https://tlgrm.ru/_/stickers/df4/305/df430517-93f0-3a43-9b14-a376f18bcb0e/5.webp',
+    'https://tlgrm.ru/_/stickers/df4/305/df430517-93f0-3a43-9b14-a376f18bcb0e/256/14.webp',
+    'https://tlgrm.ru/_/stickers/df4/305/df430517-93f0-3a43-9b14-a376f18bcb0e/256/15.webp',
+    'https://tlgrm.ru/_/stickers/df4/305/df430517-93f0-3a43-9b14-a376f18bcb0e/5.webp',
+    'https://tlgrm.ru/_/stickers/df4/305/df430517-93f0-3a43-9b14-a376f18bcb0e/256/17.webp',
+    'https://tlgrm.ru/_/stickers/df4/305/df430517-93f0-3a43-9b14-a376f18bcb0e/256/18.webp',
+    'https://tlgrm.ru/_/stickers/df4/305/df430517-93f0-3a43-9b14-a376f18bcb0e/5.webp',
+]
+
 const predictionList = [
     '1',
     '2',
@@ -31,4 +46,4 @@ const commandTexts = [
     'Получить ответ на вопрос'
 ]
 
-export { predictionList, answersList, luckValues, commandTexts}
+export { predictionList, answersList, luckValues, commandTexts, entryStikerList, PREDICTIONCARDSCOUNT}

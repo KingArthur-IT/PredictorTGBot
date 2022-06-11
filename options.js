@@ -12,7 +12,7 @@ const botOptions = {
     reply_markup: JSON.stringify({
         inline_keyboard: [
             [{text: 'Хочу получить предсказание на день', callback_data: 'getPrediction'}],
-            [{text: 'Хочу проверь свою удачу', callback_data: 'checkLuck'}],
+            [{text: 'Хочу проверить свою удачу', callback_data: 'checkLuck'}],
             [{text: 'Хочу получить ответ на интересующий вопрос', callback_data: 'askQuestion'}],
         ]
     })

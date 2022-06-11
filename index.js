@@ -1,6 +1,6 @@
 import TelegramBot from 'node-telegram-bot-api';
 import { numsOptions, botOptions, getAnswerOptions, toStartOptions, getLuckOptions } from './options.js'
-import { predictionList, answersList, luckValues, commandTexts} from './texts.js'
+import { PREDICTIONCARDSCOUNT, predictionList, answersList, luckValues, commandTexts, entryStikerList } from './texts.js'
 
 const token = '5464202256:AAE6rAXa3baCr4Lk-U_Zony3HyutIQC-1QI';
 const bot = new TelegramBot(token, {polling: true});
@@ -22,40 +22,41 @@ bot.setMyCommands([
 ])
 /* Prediction */
 const getPrediction = async (chatId) => {
-    const randIndex =  Math.floor(Math.random() * (predictionList.length - 1) );
-    await bot.sendMessage(chatId, predictionList[randIndex], toStartOptions)
+    const randIndex =  Math.floor(Math.random() * (PREDICTIONCARDSCOUNT - 1) );
+    await bot.sendPhoto(chatId, '../assets/' + randIndex + '.png', toStartOptions)
 }
 
 /* Luck */
 const checkLuck = async (chatId) => {
-    await bot.sendMessage(chatId, 'Очисти разум и настройся на вайб Вселенной!', getLuckOptions)
+    await bot.sendMessage(chatId, '❞\n     Очисти разум и настройся на вайб Вселенной!\n❞', getLuckOptions)
 }
 
 const showNums = async (chatId) => {
-    await bot.sendMessage(chatId, 'Вселенная послала тебе число от 1 до 9. Какое?', numsOptions);
+    await bot.sendMessage(chatId, '❞\n     Вселенная послала тебе число от 1 до 9. Какое?\n❞', numsOptions);
     luckNumber = Number(Math.floor(Math.random() * 8)) + 1;
 }
 
 const determLuckValue = async (chatId, selectedNum) => {
     const delta = Math.abs(selectedNum - luckNumber);
     const index = delta < 8 ? Math.floor(delta / 2) : 3;
-    await bot.sendMessage(chatId, luckValues[index], toStartOptions)
+    await bot.sendMessage(chatId, '❞\n     ' + luckValues[index] + '\n❞', toStartOptions)
 }
 
 /* Question */
 const askQuestion = async (chatId) => {
-    await bot.sendMessage(chatId, 'Очисти разум и загадай вопрос', getAnswerOptions)
+    await bot.sendMessage(chatId, '❞\n     Очисти разум и загадай вопрос\n❞', getAnswerOptions)
 }
 
 const getAnswer = async (chatId) => {
     const randAns = Math.floor(Math.random() * (answersList.length - 1));
-    await bot.sendMessage(chatId, answersList[randAns], toStartOptions)
+    await bot.sendMessage(chatId, '❞\n     ' + answersList[randAns] + '\n❞', toStartOptions)
 }
 
 /* To Start */
 const goToStart = async (chatId) => {
-    await bot.sendSticker(chatId, 'https://tlgrm.ru/_/stickers/df4/305/df430517-93f0-3a43-9b14-a376f18bcb0e/5.webp');
-    await bot.sendMessage(chatId, `Готов снова помочь тебе!`, botOptions)
+    const rand = Math.floor(Math.random() * (entryStikerList.length - 1));
+    await bot.sendSticker(chatId, entryStikerList[rand]);
+    await bot.sendMessage(chatId, `❞\n     Готов снова помочь тебе!\n❞`, botOptions)
 }
 
 /* Init */
@@ -65,8 +66,9 @@ const start = () => {
         const chatId = msg.chat.id;
         
         if (text === '/start'){
-            await bot.sendSticker(chatId, 'https://tlgrm.ru/_/stickers/df4/305/df430517-93f0-3a43-9b14-a376f18bcb0e/5.webp');
-            return await bot.sendMessage(chatId, `Приветствую тебя, ${msg.from.first_name}! Меня зовут Кас. Что желает твоя душа?`, botOptions)
+            const rand = Math.floor(Math.random() * (entryStikerList.length - 1));
+            await bot.sendSticker(chatId, entryStikerList[rand]);
+            return await bot.sendMessage(chatId, `❞\n     Приветствую тебя, ${msg.from.first_name}! Меня зовут Кас. Что желает твоя душа?\n❞`, botOptions)
         }
 
         if (text === '/prediction'){
@@ -85,7 +87,7 @@ const start = () => {
             return goToStart(chatId)
         }
 
-        return bot.sendMessage(chatId, `Я тебя не понимаю`)
+        return bot.sendMessage(chatId, `❞\n     Я тебя не понимаю\n❞`)
     })
 
     bot.on('callback_query', (msg) => {
